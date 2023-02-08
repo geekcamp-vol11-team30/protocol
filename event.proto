@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package geekCamp;
+
+service Event {
+  rpc GetEvent (EventRequest) returns (EventReply) {}
+}
+
+message EventRequest {
+  string id = 1;      //イベントid
+  string token = 2;   //認証用トークン
+}
+
+message EventReply {
+  string id = 1;      //イベントid
+  bool owner = 2;     //イベント所有者か
+  int64 timeUnit = 3; //時間単位(秒)
+  int64 duration = 4; //所要時間
+
+}

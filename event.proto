@@ -3,18 +3,31 @@ syntax = "proto3";
 package geekCamp;
 
 service Event {
-  rpc GetEvent (EventRequest) returns (EventReply) {}
+  rpc GetEvent (GetEventRequest) returns (GetEventReply) {}
+  rpc CreateEvent (CreateEventRequest) returns (CreateEventReply) {}
 }
 
-message EventRequest {
+message GetEventRequest {
   string id = 1;      //イベントid
   string token = 2;   //認証用トークン
 }
 
-message EventReply {
+message GetEventReply {
   string id = 1;      //イベントid
-  bool owner = 2;     //イベント所有者か
-  int64 timeUnit = 3; //時間単位(秒)
-  int64 duration = 4; //所要時間
+  string name = 2;    //イベント名
+  bool owner = 3;     //イベント所有者か
+  int64 timeUnit = 4; //時間単位(秒)
+  int64 duration = 5; //所要時間
 
+}
+
+message CreateEventRequest {
+  string name = 1;    //イベント名
+  string token = 2;   //認証用トークン
+  int64 timeUnit = 3; //時間単位
+  int64 duration = 4; //所要時間
+}
+
+message CreateEventReply {
+  string id = 1;      //イベントID
 }

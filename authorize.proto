@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package geekCamp;
+
+service Authorize {
+  rpc GetToken (GetTokenRequest) returns (GetTokenReply) {}
+  rpc LinkToken (LinkTokenRequest) returns (LinkTokenReply) {}
+}
+
+message GetTokenRequest {}
+
+message GetTokenReply {
+  int64 status = 1; //httpに準拠?
+  string token = 2;//トークン
+}
+
+message LinkTokenRequest {
+  string token = 1;//認証トークン
+  string gcpToken = 2;//googleのトークン?識別子?
+}
+
+message LinkTokenReply {
+  int64 status = 1; //httpに準拠?
+}

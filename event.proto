@@ -18,7 +18,7 @@ message GetEventReply {
   bool owner = 3;     //イベント所有者か
   int64 timeUnit = 4; //時間単位(秒)
   int64 duration = 5; //所要時間
-
+  repeated Answer answers = 6; //参加者の解答
 }
 
 message CreateEventRequest {
@@ -26,8 +26,20 @@ message CreateEventRequest {
   string token = 2;   //認証用トークン
   int64 timeUnit = 3; //時間単位
   int64 duration = 4; //所要時間
+  repeated int64 proposedStartTime = 5;//候補の開始時間の配列
 }
 
 message CreateEventReply {
   string id = 1;      //イベントID
+}
+
+message Answer {
+  string name = 1;
+  string note = 2;
+  ProposedSchedule schedule = 3;
+}
+
+message ProposedSchedule {
+  int64 startTime = 1;    //開始時刻
+  int64 availability = 2; //0->× 1->▲ 2->○?
 }

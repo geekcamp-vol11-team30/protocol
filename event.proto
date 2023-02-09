@@ -5,6 +5,7 @@ package geekCamp;
 service Event {
   rpc GetEvent (GetEventRequest) returns (GetEventReply) {}
   rpc CreateEvent (CreateEventRequest) returns (CreateEventReply) {}
+  rpc RegisterAnswer (RegisterAnswerRequest) returns (RegisterAnswerReply) {}
 }
 
 message GetEventRequest {
@@ -13,12 +14,13 @@ message GetEventRequest {
 }
 
 message GetEventReply {
-  string id = 1;      //イベントid
-  string name = 2;    //イベント名
-  bool owner = 3;     //イベント所有者か
-  int64 timeUnit = 4; //時間単位(秒)
-  int64 duration = 5; //所要時間
-  repeated Answer answers = 6; //参加者の解答
+  int64 status = 1; //httpに準拠?
+  string id = 2;      //イベントid
+  string name = 3;    //イベント名
+  bool owner = 4;     //イベント所有者か
+  int64 timeUnit = 5; //時間単位(秒)
+  int64 duration = 6; //所要時間
+  repeated Answer answers = 7; //参加者の解答
 }
 
 message CreateEventRequest {
@@ -30,7 +32,18 @@ message CreateEventRequest {
 }
 
 message CreateEventReply {
-  string id = 1;      //イベントID
+  int64 status = 1; //httpに準拠?
+  string id = 2;      //イベントID
+}
+
+message RegisterAnswerRequest {
+  string id = 1; //イベントID
+  string token = 2;//認証トークン
+  Answer answer = 3;//名前、備考、回答
+}
+
+message RegisterAnswerReply {
+  int64 status = 1; //httpに準拠?
 }
 
 message Answer {

@@ -5,6 +5,8 @@ package geekCamp;
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
+option go_package = "./pb";
+
 service Event {
     rpc GetEvent(GetEventRequest) returns (GetEventResponse) {}
     rpc CreateEvent(CreateEventRequest) returns (CreateEventResponse) {}
@@ -37,14 +39,14 @@ message CreateEventRequest {
 }
 
 message CreateEventResponse {
-    int64  status = 1;  // httpに準拠?
-    string id     = 2;  // イベントID
+    int64  status  = 1;  // httpに準拠?
+    string eventId = 2;  // イベントID
 }
 
 message RegisterAnswerRequest {
-    string id     = 1;  // イベントID
-    string token  = 2;  // 認証トークン
-    Answer answer = 3;  // 名前、備考、回答
+    string eventId = 1;  // イベントID
+    string token   = 2;  // 認証トークン
+    Answer answer  = 3;  // 名前、備考、回答
 }
 
 message RegisterAnswerResponse {}

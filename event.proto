@@ -21,7 +21,7 @@ message GetEventResponse {
     string                   id       = 1;  // イベントid
     string                   name     = 2;  // イベント名
     bool                     owner    = 3;  // イベント所有者か
-    int64                    timeUnit = 4;  // 時間単位(秒)
+    google.protobuf.Duration timeUnit = 4;  // 時間単位(秒)
     google.protobuf.Duration duration = 5;  // 所要時間
     repeated Answer          answers  = 6;  // 参加者の解答
 }
@@ -29,7 +29,7 @@ message GetEventResponse {
 message CreateEventRequest {
     string                   name     = 1;  // イベント名
     string                   token    = 2;  // 認証用トークン
-    int64                    timeUnit = 3;  // 時間単位
+    google.protobuf.Duration timeUnit = 3;  // 時間単位
     google.protobuf.Duration duration = 4;  // 所要時間
 
     // 候補の開始時間の配列
@@ -50,9 +50,9 @@ message RegisterAnswerRequest {
 message RegisterAnswerResponse {}
 
 message Answer {
-    string           name     = 1;
-    string           note     = 2;
-    ProposedSchedule schedule = 3;
+    string                    name     = 1;
+    string                    note     = 2;
+    repeated ProposedSchedule schedule = 3;
 
     message ProposedSchedule {
         google.protobuf.Timestamp startTime    = 1;  // 開始時間

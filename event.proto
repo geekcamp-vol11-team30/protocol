@@ -39,7 +39,6 @@ message CreateEventRequest {
 }
 
 message CreateEventResponse {
-    int64  status  = 1;  // httpに準拠?
     string eventId = 2;  // イベントID
 }
 

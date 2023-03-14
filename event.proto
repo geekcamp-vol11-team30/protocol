@@ -52,9 +52,10 @@ message RegisterAnswerRequest {
 message RegisterAnswerResponse {}
 
 message Answer {
-    string                    name     = 1;
-    string                    note     = 2;
-    repeated ProposedSchedule schedule = 3;
+    string                    name        = 1;
+    string                    note        = 2;
+    repeated ProposedSchedule schedule    = 3;
+    bool                      isOwnAnswer = 4;
 
     message ProposedSchedule {
         google.protobuf.Timestamp startTime    = 1;  // 開始時間
